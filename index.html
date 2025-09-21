@@ -78,6 +78,85 @@
     const boton = document.getElementById("reiniciar");
 
     function iniciarAnimacion() {
+      // Limpiar ramo
+      ramo.innerHTML = "";
+      // Reiniciar frase a invisible
+      frase.style.opacity = 0;
+
+      // Crear flores
+      posiciones.forEach((pos, i) => {
+        const img = document.createElement("img");
+        img.src = "flor.png"; // <-- tu flor amarilla PNG
+        img.className = "flor";
+        ramo.appendChild(img);
+
+        setTimeout(() => {
+          img.style.left = pos.x + "px";
+          img.style.top = pos.y + "px";
+          img.style.opacity = 1;
+          img.style.transform = "scale(1)";
+        }, i * 700);
+      });
+
+      // Mostrar frase al final
+      setTimeout(() => {
+        frase.style.opacity = 1;
+      }, posiciones.length * 700 + 1000);
+    }
+
+    // Ejecutar animación al cargar
+    iniciarAnimacion();
+
+    // Botón para reiniciar animación
+    boton.addEventListener("click", iniciarAnimacion);
+  </script>
+</body>
+</html>
+  <style>
+      font-size: 1.5rem;
+      color: #444;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #ffd700;
+      border: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <div id="ramo"></div>
+  <div class="frase">Un ramo de flores amarillas para iluminar tu día ✨</div>
+  <button id="reiniciar">Repetir animación</button>
+
+  <script>
+    const posiciones = [
+      {x: 100, y: 100},
+      {x: 150, y: 120},
+      {x: 50, y: 120},
+      {x: 120, y: 160},
+      {x: 80, y: 160},
+      {x: 100, y: 60},
+      {x: 140, y: 80},
+      {x: 60, y: 80}
+    ];
+
+    const ramo = document.getElementById("ramo");
+    const frase = document.querySelector(".frase");
+    const boton = document.getElementById("reiniciar");
+
+    function iniciarAnimacion() {
       // Limpiar ramo y frase
       ramo.innerHTML = "";
       frase.style.opacity = 0;
