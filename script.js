@@ -5,23 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const flower = document.createElement('div');
         flower.classList.add('flower');
 
-        // Posición inicial aleatoria
+        const flowerCenter = document.createElement('div');
+        flowerCenter.classList.add('flower-center');
+
+        flower.appendChild(flowerCenter);
+        container.appendChild(flower);
+
+        // Posición y tamaño aleatorios
         flower.style.left = `${Math.random() * 100}vw`;
         flower.style.top = `${Math.random() * 100}vh`;
 
-        // Tamaño aleatorio para variar la apariencia
-        const size = Math.random() * 20 + 10;
+        const size = Math.random() * 40 + 20;
         flower.style.width = `${size}px`;
         flower.style.height = `${size}px`;
 
-        container.appendChild(flower);
-
-        // Remover la flor después de un tiempo para evitar sobrecargar el DOM
         setTimeout(() => {
             flower.remove();
-        }, 5000); // Remueve la flor después de 5 segundos
+        }, 5000);
     }
 
-    // Crea una flor cada 500 milisegundos
     setInterval(createFlower, 500);
 });
