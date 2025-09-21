@@ -49,6 +49,55 @@
     const ramo = document.getElementById("ramo");
     const frase = document.querySelector(".frase");
 
+    // Coordenadas de cada flor dentro del ramo
+    const posiciones = [
+      {x: 100, y: 100},
+      {x: 150, y: 120},
+      {x: 50, y: 120},
+      {x: 120, y: 160},
+      {x: 80, y: 160},
+      {x: 100, y: 60},
+      {x: 140, y: 80},
+      {x: 60, y: 80}
+    ];
+
+    // Crear flores dinámicamente
+    posiciones.forEach((pos, i) => {
+      const img = document.createElement("img");
+      img.src = "flor.png"; // <-- aquí va tu flor amarilla (PNG con fondo transparente)
+      img.className = "flor";
+      ramo.appendChild(img);
+
+      setTimeout(() => {
+        img.style.left = pos.x + "px";
+        img.style.top = pos.y + "px";
+        img.style.opacity = 1;
+        img.style.transform = "scale(1)";
+      }, i * 700); // cada flor aparece con retraso
+    });
+
+    // Mostrar frase al final
+    setTimeout(() => {
+      frase.style.opacity = 1;
+    }, posiciones.length * 700 + 1000);
+  </script>
+</body>
+</html>
+      font-size: 1.5rem;
+      color: #444;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="ramo"></div>
+  <div class="frase">Un ramo de flores amarillas para iluminar tu día ✨</div>
+
+  <script>
+    const ramo = document.getElementById("ramo");
+    const frase = document.querySelector(".frase");
+
     // Coordenadas donde se juntan las flores (centro del ramo)
     const posiciones = [
       {x: 100, y: 100},
