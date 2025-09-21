@@ -1,0 +1,25 @@
+body {
+    background-color: #f0e68c; /* Un fondo amarillo suave */
+    overflow: hidden; /* Oculta cualquier cosa que se salga de la pantalla */
+    margin: 0;
+    height: 100vh;
+}
+
+.flower {
+    position: absolute; /* Permite posicionar las flores libremente */
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    border-radius: 50%; /* Forma circular */
+    opacity: 0; /* Las flores empiezan invisibles */
+    animation: fadeIn 2s forwards; /* Animación para que aparezcan gradualmente */
+}
+
+/* Aquí podrías agregar más estilos para los pétalos, tallos, etc. */
+/* También podrías usar transformaciones y animaciones más complejas */
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
