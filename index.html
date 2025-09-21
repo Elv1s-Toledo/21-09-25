@@ -8,32 +8,79 @@
     body {
       margin: 0;
       height: 100vh;
+      background: #fffbe6;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      background: #fff8dc;
-      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    .ramo {
-      display: flex;
-      flex-wrap: wrap;
-      width: 200px;
-      justify-content: center;
-      opacity: 0;
-      animation: aparecer 2s ease forwards;
-    }
-
-    @keyframes aparecer {
-      to { opacity: 1; }
+    #ramo {
+      position: relative;
+      width: 300px;
+      height: 300px;
     }
 
     .flor {
-      width: 50px;
-      height: 50px;
-      background: radial-gradient(circle, #ffd700 40%, #ffcc00 70%);
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+      transform: scale(0.2);
+      transition: all 1s ease;
+    }
+
+    .frase {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #444;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="ramo"></div>
+  <div class="frase">Un ramo de flores amarillas para iluminar tu día ✨</div>
+
+  <script>
+    const ramo = document.getElementById("ramo");
+    const frase = document.querySelector(".frase");
+
+    // Coordenadas donde se juntan las flores (centro del ramo)
+    const posiciones = [
+      {x: 100, y: 100},
+      {x: 150, y: 120},
+      {x: 50, y: 120},
+      {x: 120, y: 160},
+      {x: 80, y: 160},
+      {x: 100, y: 60}
+    ];
+
+    // Crear flores dinámicamente
+    posiciones.forEach((pos, i) => {
+      const img = document.createElement("img");
+      img.src = "flor.png"; // <-- aquí va tu imagen real de flor amarilla (PNG)
+      img.className = "flor";
+      ramo.appendChild(img);
+
+      setTimeout(() => {
+        img.style.left = pos.x + "px";
+        img.style.top = pos.y + "px";
+        img.style.opacity = 1;
+        img.style.transform = "scale(1)";
+      }, i * 800); // animación escalonada
+    });
+
+    // Mostrar frase después de que aparezcan todas
+    setTimeout(() => {
+      frase.style.opacity = 1;
+    }, posiciones.length * 800 + 1000);
+  </script>
+</body>
+</html>
       border-radius: 50%;
       margin: 5px;
       position: relative;
